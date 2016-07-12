@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import COM.FutureTense.ContentServer.PageData;
 import COM.FutureTense.Interfaces.FTValList;
@@ -37,8 +37,10 @@ import com.fatwire.gst.foundation.facade.runtag.render.SatellitePage;
  * 
  * @author Dolf Dijkstra
  * @since Apr 13, 2011
+ * 
+ * @deprecated as of release 12.x, replace with OOTB features (e.g. callelement tag, calltemplate tag, ics.RunTag and the like)
+ * 
  */
-
 public class IncludePage implements Include {
     public static final List<String> FORBIDDEN_VARS = Collections.unmodifiableList(Arrays.asList("tid", "eid", "seid",
             "packedargs", "variant", "context", "pagename", "rendermode", "ft_ss"));

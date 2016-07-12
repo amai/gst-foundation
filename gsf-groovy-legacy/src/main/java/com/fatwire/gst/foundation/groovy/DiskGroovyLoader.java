@@ -28,7 +28,7 @@ import java.net.URL;
 
 import javax.servlet.ServletContext;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +42,9 @@ import COM.FutureTense.Interfaces.ICS;
  * 
  * @author Dolf Dijkstra
  * @since Mar 28, 2011
+ * 
+ * @deprecated as of release 12.x, replace with WCS 12c's native Groovy support
+ * 
  */
 /*
  * alternative method:

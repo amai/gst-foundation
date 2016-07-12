@@ -31,10 +31,15 @@ import com.openmarket.xcelerate.asset.AssetIdImpl;
 import com.openmarket.xcelerate.publish.PageRef;
 import com.openmarket.xcelerate.publish.PubConstants;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import static COM.FutureTense.Interfaces.Utilities.goodString;
 
+/**
+ * 
+ * @deprecated as of release 12.x, replace with WCS 12c's native vanity URLs support.
+ *
+ */
 public class WraPagePreviewReference extends PageRef {
 
     public static final String GST_DISPATCHER = "GST/Dispatcher";

@@ -41,7 +41,7 @@ import com.fatwire.gst.foundation.vwebroot.VirtualWebrootDao;
 import com.fatwire.gst.foundation.wra.VanityAsset;
 import com.fatwire.gst.foundation.wra.WraCoreFieldDao;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +51,8 @@ import org.slf4j.LoggerFactory;
  * 
  * @author Dolf.Dijkstra
  * @since Jun 17, 2010
- * @deprecated use {@link UrlRegistry2}
+ * 
+ * @deprecated as of release 12.x, replace with WCS 12c's native vanity URLs support.
  */
  @Deprecated
 public class UrlRegistry implements WraPathTranslationService {

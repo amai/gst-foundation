@@ -21,7 +21,7 @@ import java.util.Collection;
 
 import javax.servlet.jsp.JspException;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import COM.FutureTense.Interfaces.ICS;
 
@@ -35,6 +35,9 @@ import com.fatwire.gst.foundation.taglib.GsfSimpleTag;
  * 
  * @author Dolf Dijkstra
  * @since August 31, 2012
+ * 
+ * 
+ * @deprecated as of release 12.x, temporarily, until a brand new, significantly improved NavigationService implementation is released (soon)
  * 
  */
 public class PluggableNavigationTag extends GsfSimpleTag {

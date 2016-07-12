@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,6 +44,10 @@ import com.fatwire.gst.foundation.facade.sql.SqlHelper;
  * User: Tony Field Date: 2011-05-06
  * 
  * @author Dolf Dijkstra
+ * 
+ * 
+ * @deprecated as of release 12.x, replace with WCS 12c's native vanity URLs support.
+ * 
  */
 public class WraCoreFieldApiBypassDao extends AssetApiWraCoreFieldDao {
 

@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import COM.FutureTense.Interfaces.ICS;
 
@@ -32,6 +32,10 @@ import com.fatwire.gst.foundation.facade.runtag.render.CallTemplate.Type;
 /**
  * @author Dolf Dijkstra
  * @since Apr 13, 2011
+ * 
+ * 
+ * @deprecated as of release 12.x, replace with OOTB features (e.g. callelement tag, calltemplate tag, ics.RunTag and the like)
+ * 
  */
 public class IncludeTemplate implements Include {
 

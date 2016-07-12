@@ -15,7 +15,7 @@
  */
 package com.fatwire.gst.foundation.controller.action.support;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import COM.FutureTense.Interfaces.ICS;
 
@@ -27,6 +27,9 @@ import com.fatwire.gst.foundation.controller.action.ActionNameResolver;
  * 
  * @author Dolf.Dijkstra
  * @since May 26, 2011
+ * 
+ * @deprecated as of release 12.x, replace GSF Actions with WCS 12c's native Controllers and/or wrappers
+ * 
  */
 public class CommandActionNameResolver implements ActionNameResolver {
     private static final String CMD_VAR = "cmd";

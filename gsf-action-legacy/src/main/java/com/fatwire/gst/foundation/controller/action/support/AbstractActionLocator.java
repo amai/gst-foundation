@@ -16,7 +16,7 @@
 
 package com.fatwire.gst.foundation.controller.action.support;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
 
 import COM.FutureTense.Cache.CacheManager;
@@ -40,6 +40,10 @@ import org.slf4j.LoggerFactory;
  * 
  * @author Dolf Dijkstra
  * @since Apr 27, 2011
+ * 
+ * 
+ * @deprecated as of release 12.x, replace GSF Actions with WCS 12c's native Controllers and/or wrappers
+ * 
  */
 public abstract class AbstractActionLocator implements ActionLocator {
 

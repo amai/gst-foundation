@@ -15,7 +15,7 @@
  */
 package com.fatwire.gst.foundation.groovy.context;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import COM.FutureTense.Interfaces.ICS;
 
@@ -28,6 +28,9 @@ import com.fatwire.gst.foundation.controller.action.support.BaseFactory;
  * 
  * @author Dolf Dijkstra
  * @since September 23, 2012
+ * 
+ * 
+ * @deprecated as of release 12.x, replace with WCS 12c's native Groovy support
  * 
  */
 public class GroovyFactory extends BaseFactory {

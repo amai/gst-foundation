@@ -25,7 +25,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +45,9 @@ import com.fatwire.gst.foundation.facade.sql.SqlHelper;
  * 
  * @author Dolf Dijkstra
  * @since September 21,2012
+ * 
+ * @deprecated as of release 12.x, replace with WCS 12c's native Groovy support
+ * 
  */
 /*
  * alternative method:

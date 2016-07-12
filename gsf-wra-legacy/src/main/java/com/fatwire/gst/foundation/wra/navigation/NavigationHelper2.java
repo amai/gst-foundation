@@ -21,7 +21,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import COM.FutureTense.Interfaces.ICS;
 import COM.FutureTense.Interfaces.Utilities;
@@ -54,7 +54,8 @@ import com.fatwire.mda.DimensionFilterInstance;
  * 
  * @author Dolf Dijkstra
  * @since Jun 8, 2012
- * @deprecated replaced with {@link NavigationService}
+ * 
+ * @deprecated as of release 12.x, will be replaced with a brand new, significantly improved NavigationService implementation (coming soon)
  */
 public class NavigationHelper2 extends AbstractNavigationHelper {
     /**

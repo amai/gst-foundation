@@ -36,7 +36,7 @@ import com.fatwire.gst.foundation.facade.sql.table.TableDef;
 import com.fatwire.gst.foundation.vwebroot.VirtualWebroot;
 import com.fatwire.gst.foundation.wra.SimpleWra;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +47,7 @@ import org.slf4j.LoggerFactory;
  * @author Dolf Dijkstra
  * @since November 1, 2011
  * 
- * @deprecated May 15, 2016 by fvillalba
+ * @deprecated as of release 12.x, replace with WCS 12c's native vanity URLs support.
  * 
  */
 @Deprecated

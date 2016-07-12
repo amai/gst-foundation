@@ -17,7 +17,7 @@ package com.fatwire.gst.foundation.include;
 
 import java.util.Set;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
 
 import COM.FutureTense.Interfaces.FTValList;
@@ -28,6 +28,11 @@ import com.fatwire.gst.foundation.CSRuntimeException;
 import com.fatwire.gst.foundation.facade.runtag.render.CallTemplate.Style;
 import com.fatwire.gst.foundation.facade.runtag.satellite.Page;
 
+/**
+ * 
+ * @deprecated as of release 12.x, replace with OOTB features (e.g. callelement tag, calltemplate tag, ics.RunTag and the like)
+ *
+ */
 public class GsfCallTemplate {
     private String site;
     private String tname;

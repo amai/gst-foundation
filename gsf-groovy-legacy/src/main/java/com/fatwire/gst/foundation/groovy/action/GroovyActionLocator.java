@@ -16,7 +16,7 @@
 
 package com.fatwire.gst.foundation.groovy.action;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import COM.FutureTense.Interfaces.ICS;
 
@@ -29,6 +29,9 @@ import com.fatwire.gst.foundation.groovy.GroovyLoader;
 /**
  * @author Dolf Dijkstra
  * @since Mar 28, 2011
+ * 
+ * @deprecated as of release 12.x, replace with WCS 12c's native Groovy support and Controllers
+ * 
  */
 public class GroovyActionLocator extends AbstractActionLocator {
 	private GroovyLoader groovyLoader;

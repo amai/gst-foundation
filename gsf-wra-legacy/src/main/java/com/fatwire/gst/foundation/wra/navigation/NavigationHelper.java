@@ -45,7 +45,7 @@ import com.fatwire.gst.foundation.wra.WraUriBuilder;
 import com.fatwire.mda.DimensionFilterInstance;
 import com.openmarket.xcelerate.asset.AssetIdImpl;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,7 +60,7 @@ import static com.fatwire.gst.foundation.facade.runtag.asset.FilterAssetsByDate.
  * @author Dolf Dijkstra
  * @since Jun 17, 2010
  * 
- * @deprecated June 16, 2016 by fvillalba
+ * @deprecated as of release 12.x, will be replaced with a brand new, significantly improved NavigationService implementation (coming soon)
  * 
  */
 @Deprecated

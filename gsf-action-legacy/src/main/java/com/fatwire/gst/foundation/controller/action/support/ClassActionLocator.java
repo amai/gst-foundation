@@ -15,7 +15,7 @@
  */
 package com.fatwire.gst.foundation.controller.action.support;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +32,9 @@ import com.fatwire.gst.foundation.controller.action.Injector;
  
  * 
  * @author Dolf Dijkstra
+ *
+ *
+ * @deprecated as of release 12.x, replace GSF Actions with WCS 12c's native Controllers and/or wrappers
  *
  */
 public class ClassActionLocator extends AbstractActionLocator {

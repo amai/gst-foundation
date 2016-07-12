@@ -24,8 +24,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,6 +53,9 @@ import com.fatwire.mda.DimensionFilterInstance;
 
 /**
  * @author Dolf Dijkstra
+ * 
+ * 
+ * @deprecated as of release 12.x, will be replaced with a brand new, significantly improved NavigationService implementation (coming soon) 
  * 
  */
 public class WraNavigationService extends AbstractNavigationService implements NavigationService {

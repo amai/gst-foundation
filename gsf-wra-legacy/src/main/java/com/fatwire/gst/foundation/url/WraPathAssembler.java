@@ -30,7 +30,7 @@ import com.fatwire.cs.core.uri.QueryAssembler;
 import com.fatwire.cs.core.uri.Simple;
 import com.openmarket.xcelerate.publish.PubConstants;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +42,10 @@ import static COM.FutureTense.Interfaces.Utilities.goodString;
  * 
  * @author Tony Field
  * @since Jul 20, 2010
+ * 
+ * 
+ * @deprecated as of release 12.x, replace with WCS 12c's native vanity URLs support.
+ * 
  */
 public final class WraPathAssembler extends LightweightAbstractAssembler {
     protected static final Logger LOG = LoggerFactory.getLogger("tools.gsf.url.WraPathAssembler");

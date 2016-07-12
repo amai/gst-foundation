@@ -26,11 +26,14 @@ import com.fatwire.assetapi.data.AssetId;
 import com.fatwire.gst.foundation.facade.assetapi.asset.ScatteredAssetAccessTemplate;
 import com.openmarket.xcelerate.asset.AssetIdImpl;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Dolf Dijkstra
  * @since Mar, 2011
+ * 
+ * @deprecated as of release 12.x
+ * 
  */
 public class AssetChildrenTag extends GsfSimpleTag {
 

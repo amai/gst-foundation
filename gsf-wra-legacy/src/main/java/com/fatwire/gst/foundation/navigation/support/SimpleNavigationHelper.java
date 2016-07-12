@@ -20,8 +20,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +49,10 @@ import com.fatwire.gst.foundation.wra.WraUriBuilder;
  * 
  * @author Dolf Dijkstra
  * @since August 31,2012
+ * 
+ * 
+ * @deprecated as of release 12.x, will be replaced with a brand new, significantly improved NavigationService implementation (coming soon)
+ * 
  */
 public class SimpleNavigationHelper extends AbstractNavigationService implements NavigationService {
 

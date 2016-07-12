@@ -22,13 +22,13 @@ import com.fatwire.assetapi.data.AssetId;
 import com.fatwire.gst.foundation.facade.runtag.asset.AssetList;
 import com.fatwire.gst.foundation.facade.runtag.render.GetTemplateUrl;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Dolf Dijkstra
  * @since Mar 13, 2011
  * 
- * @deprecated fvillalba on June 16, 2016
+ * @deprecated as of release 12.x, replace with WCS 12c's native vanity URLs support.
  */
 @Deprecated
 public class WraUriBuilder {

@@ -15,7 +15,7 @@
  */
 package com.fatwire.gst.foundation.controller.action.support;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import COM.FutureTense.Interfaces.ICS;
 
@@ -27,6 +27,9 @@ import com.fatwire.gst.foundation.controller.action.RenderPage;
  * ActionLocator that always returns a {@link RenderPage} action as long as the name parameter is blank.
  * 
  * @author Dolf Dijkstra
+ * 
+ * 
+ * @deprecated as of release 12.x, replace GSF Actions with WCS 12c's native Controllers and/or wrappers
  * 
  */
 public final class RenderPageActionLocator extends AbstractActionLocator {

@@ -24,12 +24,16 @@ import COM.FutureTense.Interfaces.ICS;
 import com.fatwire.assetapi.data.AssetId;
 import com.fatwire.gst.foundation.facade.assetapi.asset.ScatteredAssetAccessTemplate;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
  * @author Tony Field
  * @since 2011-09-20
+ * 
+ * 
+ * @deprecated as of release 12.x
+ * 
  */
 public final class GetTagsTag extends GsfSimpleTag {
 
