@@ -16,6 +16,7 @@
 package tools.gsf.config;
 
 import COM.FutureTense.Interfaces.ICS;
+import com.fatwire.gst.foundation.controller.annotation.ServiceProducer;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
