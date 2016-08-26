@@ -15,9 +15,6 @@
  */
 package tools.gsf.config.inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import COM.FutureTense.Interfaces.ICS;
 import tools.gsf.time.Stopwatch;
 
@@ -27,9 +24,7 @@ import tools.gsf.time.Stopwatch;
  */
 public class AnnotationInjector implements Injector {
 
-	private static final Logger LOG = LoggerFactory.getLogger(AnnotationInjector.class);
-	
-	private final Stopwatch stopwatch;
+    private final Stopwatch stopwatch;
     private final Injector[] injectors;
 
     public AnnotationInjector(Stopwatch stopwatch, Injector... injectors) {
@@ -41,9 +36,6 @@ public class AnnotationInjector implements Injector {
     public void inject(Object dependent) {
         stopwatch.start();
         for (Injector injector : injectors) {
-        	if (LOG.isDebugEnabled()) {
-        		LOG.debug("AnnotationInjector will now attempt injection into " + dependent + " using injector " + injector.getClass().getSimpleName());
-        	}        	
             injector.inject(dependent);
             stopwatch.split("AnnotationInjector: {} injection done", injector.getClass().getSimpleName());
         }

@@ -16,73 +16,35 @@
 
 HOW-TO
 
-	* THE BASICS:
+	{{Build and Package the GSF Project}}
+	
+	{{Use the OOTB Factory Producer and Factory Implementations}}
+	
+	{{Use Your Own Factory Producer Implementation}}
 
-		{{Prepare your local MAVEN repository}}	
+	{{Use Your Own Factory Implementation}}
+	
+	{{Use the @ServiceProducer Annotation (tools.gsf.config.ServiceProducer)}}
+	
+	{{Use the @InjectForRequest Annotation (tools.gsf.config.inject.InjectForRequest)}}
 
-		{{Build and Package the GSF Project}}
+	{{Use the @Bind Annotation (tools.gsf.config.inject.Bind)}}
 	
-		{{Use the OOTB Factory Producer and Factory Implementations}}
-		
-		{{Use Your Own Factory Implementation}}
+	{{Use the @Mapping Annotation (tools.gsf.mapping.Mapping)}}
 
-		{{Use the @ServiceProducer Annotation (tools.gsf.config.ServiceProducer)}}
-		
-		{{Use the @InjectForRequest Annotation (tools.gsf.config.inject.InjectForRequest)}}
+	{{Use Your Own Asset Type as a GST Property Asset}}
 	
-		{{Use the @Bind Annotation (tools.gsf.config.inject.Bind)}}
-		
-		{{Use the @CurrentAsset Annotation (tools.gsf.facade.assetapi.asset.CurrentAsset)}}
+	{{Use Your Own NavService Implementation}}
 
-		{{Use the @Mapping Annotation (tools.gsf.mapping.Mapping)}}
-		
-		{{Use Your Own Asset Type as a GST Property Asset}}
-		
-		{{Make Your Own Beans / Objects Available for Injection}}
-		
-		{{Inject Your Own Beans / Objects Into a WCS 12c Controller}}
-		
-	* JUST A TAD MORE ADVANCED:
+	{{Make Your Own Beans / Objects Available for Injection}}
 	
-		{{Use Your Own Factory Producer Implementation}}	
+	{{Use Your Own NavigationNode Implementation}}
 	
-		{{Use Your Own NavService Implementation}}
-	
-		{{Use Your Own NavigationNode Implementation}}
-
-THE BASICS
-
-Prepare your local MAVEN repository
-
-	In order to build and package the GSF project, first you must ensure all artifacts can be found by your MAVEN install.
-	
-	Unfortunately, at the time of this release, Oracle had not yet set up a public MAVEN repository where WCS 12c's own JAR files - i.e. those starting with "sites-*" - can be found (as MAVEN artifacts) by the general public.
-	
-	For that reason, the (only) artifacts you'll most likely be missing are those concerning WCS 12c's own JAR files.
-	
-	Hence, in order to build the GSF, you must either:
-	
-	*	Deploy all missing MAVEN artifacts onto your local MAVEN repository and/or
-	
-	*	Create all missing MAVEN artifacts in your own remote MAVEN repository (for ex.: artifactory) and make sure your local MAVEN install gets them from such repository.
-	
-	[]
-	
-	The strategy we've opted for is treating each sites-* JAR file as a separate artifact.
-	
-	This allows our streamlining the list of dependencies for each pom in the GSF project and, thus, reducing the total build time.
-	
-	It also provides better visibility of the actual dependencies of each GSF artifact -- i.e. CORE's and LEGACY's.
-	
-	Note that we are building only against WCS 12c's artifacts / JARs. GSF-12 <<is not and will not be compatible with previous versions of WCS>>.
-	
-	All other artifacts referenced by the GSF's POMs are public, available from standard locations.
+	{{Inject Your Own Beans / Objects Into a WCS 12c Controller}}
 
 Build and Package the GSF Project
 
-	Once you've set up MAVEN locally (one-timer), you'd be all set for building the GSF artifacts.
-	
-	Building (and packaging) the GSF artifacts is <<very easy>>; just execute the package.sh shell script located in the project's root folder:
+	Building and packaging the GSF's components is very simple; just execute the package.sh shell script located in the project's root folder:
 
 +--				
 $ sh package.sh
@@ -171,6 +133,57 @@ Factory myServletContextScopedFactory = fp.getFactory(servletContext);
 			
 	[] 
 		
+Use Your Own Factory Producer Implementation
+
+	* Implement your own custom factory producer.
+	
+		* You can extend the existing DefaultFactoryProducer class.
+		
+		* Otherwise, make sure your own class implements the <<tools.gsf.config.FactoryProducer>> interface.
+		
+		[]
+	
+	* Register it, in one of the following ways: 
+	
+		[[1]] Via META-INF/gsf-factory-producer:
+		
+			[[A]] Create a file named "gsf-factory-producer".
+			
+			[[A]] Inside your "gsf-factory" file, add a line with the fully-qualified name of your custom factory producer class, as in:
+		
++--
+com.mycompany.wcs.gsf.config.MyCustomFactoryProducer
++--
+
+			[[A]] Package that file inside the "META-INF" folder of any JAR you are deploying inside the WCS 12c web app.
+			
+				* Typically, you'd put it inside your custom JAR file (e.g. the one containing the custom factory producer class itself).
+				
+				[]
+
+			[[A]] Deploy the JAR file containing your "gsf-factory" file inside the WCS web app.
+			
+			[]
+			
+		[[1]] Via web.xml:
+		
+			[[A]] Inside your WCS 12c web app's web.xml descriptor, add a context-param called "gsf-factory-producer" and specify the fully-qualified classname of your factory producer class. For example:
+			
++--
+<context-param>    
+   <param-name>gsf-factory-producer</param-name>
+   <param-value>com.mycompany.wcs.gsf.config.MyCustomFactoryProducer</param-value>
+</context-param>
++--				
+		
+			[[A]] Redeploy (and restart) the WCS 12c web app so it picks up the updated web.xml descriptor.
+			
+			[]
+			
+		[]
+		
+	[]
+
 Use Your Own Factory Implementation
 
 	* Implement your own custom factory.
@@ -279,18 +292,10 @@ Use the @ServiceProducer Annotation (tools.gsf.config.ServiceProducer)
 				[]
 			
 			[]
-
-		* Whenever you specify a ServiceProducer.name for a given method in your factory class, make sure it is unique -- including all inherited methods.
-		
-		* Although specifying ServiceProducer.name is optional, you are advised to specify it for every Service Producer or, at the very least, for all Service Producers whose return type is the same; this will avoid ambiguity and, potentially, unexpected results from your factory's "getObject" method.
-		
-			* This is especially relevant when your own factory inherits other Service Producers with the same return type from an existing factory it extends.
-			
-			* Unless you really know what you are doing, avoid overriding inherited Service Producers.
-			
-			[] 
 			
 		[]
+		
+	* Make sure your own Service Producers' annotations (particularly, the "name") don't collide with the OOTB Factories' (or amongst them).
 
 	* Example:
 	
@@ -347,10 +352,8 @@ Use the @InjectForRequest Annotation (tools.gsf.config.inject.InjectForRequest)
 			
 			[]
 			
-		* Although InjectForRequest.value is optional, you are advised to specify it for every InjectForRequest annotations or, at the very least, for all InjectForRequest annotations injecting an object whose type matches more than one Service Producer in any of the factories being used (including any Service Producers those factory may inherit). This will avoid ambiguity and, potentially, unexpected objects getting injected.
-
 		[]
-	
+		
 	* Example:
 	
 +--
@@ -425,101 +428,6 @@ protected String myRenderMode;
 		
 		<<Factories are meant to be in charge of instantiating all objects (e.g. beans / services) meant for injection.>>
 	
-	[]
-
-Use the @CurrentAsset Annotation (tools.gsf.facade.assetapi.asset.CurrentAsset)
-
-	* This brand new annotation determines the current asset for the current ICS object (e.g. via c + cid), loads the asset along with the value of the attributes specified by the annotation and injects the appropriate object into the annotated field. 
-	
-	* It provides the following settings:
-	
-		* <<name>> (OPTIONAL): the "name" of the attributes whose values we want to pre-load for the current asset. If not specified, "value" will default to "name" (meaning the std field on every asset type / subtype named "name")
-
-		[]
-		
-	* Lookup logic and limitations:
-	
-		* Current asset is determined as per the following call: AssetIdUtils.currentId(ics).
-		
-		* Supports TemplateAsset, ScatteredAsset and AssetData fields.
-		
-		[]
-		
-	* IMPORTANT: be aware of the language-specific convention for specifying String arrays (Groovy = [], Java = {})
-		
-	* Examples (Groovy):
-		
-			* TemplateAsset:
-			
-+--
-
-class MyController extends InjectingController {
-	
-	(...)
- 
-	@CurrentAsset(attributes=["title", "body", "headline"]) TemplateAsset currentTemplateAsset;
- 
-	protected void handleRequest() {
-		String headline = currentAsset.asString("headline");
-		
-		(...)
-	}
- 	
-	(...)
- 
-}
-
-+--
-
-			* ScatteredAsset:
-			
-+--
-
-class AnotherController extends InjectingController {
-
-	(...)
-
-	@CurrentAsset(attributes=["title", "body", "headline"]) ScatteredAsset currentScatteredAsset;
-
-	protected void handleRequest() {
-		models.add("asset", currentScatteredAsset);
-		
-		(...)
-	}
-	
-	(...)
-
-}
-
-+--
-
-			* AssetData:
-			
-+--
-
-class ThirdController extends InjectingController {
-
-	(...)
-
-	@CurrentAsset(attributes=["title", "body", "headline"]) AssetData currentAssetData;
-	
-	protected void handleRequest() {
-		AttributeData ad = currentAssetData.getAttribute("title");
-		
-		(...)
-
-	}
-	
-	(...)
-
-}
-
-+--
-
-			[]
-			
-		[]
-			
 	[]
 	
 Use the @Mapping Annotation (tools.gsf.mapping.Mapping)
@@ -619,12 +527,51 @@ public PropertyDao instantiateCustomPropertyDao(final ICS ics) {
 
 	[]
 
+Use Your Own NavService Implementation
+
+	* Implement your own object factory.
+	
+	* Make your custom bean / object available by having a Service Producer method in your own object factory instantiate it:
+		
+		* In case you have <<extended>> IcsObjectFactory, you probably want to override the existing <<"createNavService">> method.
+		
+		* In case you have not extended IcsObjectFactory, you must add the due Service Producer method to your own implementation; for example: 
+	
++--
+
+@ServiceProducer(cache = true)
+public NavService<AssetNode> createNavService(final ICS ics) {
+    TemplateAssetAccess dao = getObject("templateAssetAccess", TemplateAssetAccess.class);
+    return new MyCustomNavServiceImplementation(ics, dao);
+}
+
++--
+		
+		[]
+		
+	[]
+	
+
 Make Your Own Beans / Objects Available for Injection
 				
 	See "Use a Custom Asset Type as a GST Property Asset" and "Implement (and Use) Your Own NavService Implementation" above.
 	
 	In general, all you need to do is implement your own object factory and make your custom bean available by adding the due Service Producer (annotated) method to it.
 
+Use Your Own NavigationNode Implementation
+
+	This one depends on what "using your own NavigationNode implementation" means to you:
+	
+	* If you literally want to use your own <<Node>> implementation, then doing so requires your implementing your own <<NavService>>, too.
+	
+		* You can either implement your own NavService from scratch or extend the existing ones (see <<SitePlanNavService>> or <<LightweightSitePlanNavService>>)
+	
+		* Plugging in your own NavService is simple (see above)
+	
+	* If you are using one of the OOTB NavService implementations and you just want each <<AssetNode>> to be pre-populated with additional data other than the asset's "name" and "template", then you just need to override the <<"populateNodeData">> method.
+	
+	[]
+	
 Inject Your Own Beans / Objects Into a WCS 12c Controller
 
 	* Extend GSF's own <<tools.gsf.controller.InjectingController>> instead of WCS 12c's BaseController.
@@ -661,103 +608,11 @@ Inject Your Own Beans / Objects Into a WCS 12c Controller
 		
 		This implies there are now 2 CallTemplate facades:
 		
-			* The new one, which ships with the CORE artifact / JAR. In this one, style will NEVER be autocalculated for you. Either you set it explicitly - to the appropriate value - on each call or an Exception will be thrown.
+			* The new one, which ships with the CORE artifact / JAR. In this one, style will NEVER be autocalculated for you. Either you set it explicitly - to the appropriate value - on each call or an Exception will be thrown, thus breaking your code.
 			
 			* The old one, which ships with the LEGACY artifact / JAR. This one has been left untouched, which means the style auto-selection intelligence is still there, with all that implies.
 			
 			[]		
 		
 	[]
-
-JUST A TAD MORE ADVANCED
-
-Use Your Own Factory Producer Implementation
-
-	* Implement your own custom factory producer.
-	
-		* You can extend the existing DefaultFactoryProducer class.
-		
-		* Otherwise, make sure your own class implements the <<tools.gsf.config.FactoryProducer>> interface.
-		
-		[]
-	
-	* Register it, in one of the following ways: 
-	
-		[[1]] Via META-INF/gsf-factory-producer:
-		
-			[[A]] Create a file named "gsf-factory-producer".
-			
-			[[A]] Inside your "gsf-factory" file, add a line with the fully-qualified name of your custom factory producer class, as in:
-		
-+--
-com.mycompany.wcs.gsf.config.MyCustomFactoryProducer
-+--
-
-			[[A]] Package that file inside the "META-INF" folder of any JAR you are deploying inside the WCS 12c web app.
-			
-				* Typically, you'd put it inside your custom JAR file (e.g. the one containing the custom factory producer class itself).
-				
-				[]
-
-			[[A]] Deploy the JAR file containing your "gsf-factory" file inside the WCS web app.
-			
-			[]
-			
-		[[1]] Via web.xml:
-		
-			[[A]] Inside your WCS 12c web app's web.xml descriptor, add a context-param called "gsf-factory-producer" and specify the fully-qualified classname of your factory producer class. For example:
-			
-+--
-<context-param>    
-   <param-name>gsf-factory-producer</param-name>
-   <param-value>com.mycompany.wcs.gsf.config.MyCustomFactoryProducer</param-value>
-</context-param>
-+--				
-		
-			[[A]] Redeploy (and restart) the WCS 12c web app so it picks up the updated web.xml descriptor.
-			
-			[]
-			
-		[]
-		
-	[]
-
-Use Your Own NavService Implementation
-
-	* Implement your own object factory.
-	
-	* Make your custom bean / object available by having a Service Producer method in your own object factory instantiate it:
-		
-		* In case you have <<extended>> IcsObjectFactory, you probably want to override the existing <<"createNavService">> method.
-		
-		* In case you have not extended IcsObjectFactory, you must add the due Service Producer method to your own implementation; for example: 
-	
-+--
-
-@ServiceProducer(cache = true)
-public NavService<AssetNode> createNavService(final ICS ics) {
-    TemplateAssetAccess dao = getObject("templateAssetAccess", TemplateAssetAccess.class);
-    return new MyCustomNavServiceImplementation(ics, dao);
-}
-
-+--
-		
-		[]
-		
-	[]
-	
-Use Your Own NavigationNode Implementation
-
-	This one depends on what "using your own NavigationNode implementation" means to you:
-	
-	* If you literally want to use your own <<Node>> implementation, then doing so requires your implementing your own <<NavService>>, too.
-	
-		* You can either implement your own NavService from scratch or extend the existing ones (see <<SitePlanNavService>> or <<LightweightSitePlanNavService>>)
-	
-		* Plugging in your own NavService is simple (see above)
-	
-	* If you are using one of the OOTB NavService implementations and you just want each <<AssetNode>> to be pre-populated with additional data other than the asset's "name" and "template", then you just need to override the <<"populateNodeData">> method.
-	
-	[]
-
 	
